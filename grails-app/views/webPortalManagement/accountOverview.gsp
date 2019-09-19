@@ -62,12 +62,9 @@
                 <table class="table table-borderless">
                   <tbody>
                     <tr>
-                        <td class="font-weight-bold"><h5>Customer Name: </h5></td>
-                        <td class="font-weight-bold"><h5>Customer ID: </h5></td>
+                        <td class="font-weight-bold"><h5>Customer Name <br> <p class="text-success"> ${clientdisplayName}</p></h5>
+                        <td class="font-weight-bold"><h5>Customer ID <br> <p class="text-danger"> ${clientCustomerId}</p></h5></td>
                     </tr>
-                    <tr>
-                        <td class="text-danger font-weight-bold">${clientdisplayName}</td>
-                        <td class="text-info font-weight-bold">${clientCustomerId}</td></tr>
                   </tbody>
                 </table>
                 <div class="table-responsive">    
