@@ -63,10 +63,10 @@
                   <tbody>
                     <tr>
                         <td class="font-weight-bold"><h5>Customer Name: </h5></td>
-                        <td class="text-danger font-weight-bold">${clientdisplayName}</td>
+                        <td class="font-weight-bold"><h5>Customer ID: </h5></td>
                     </tr>
                     <tr>
-                        <td class="font-weight-bold"><h5>Customer ID: </h5></td>
+                        <td class="text-danger font-weight-bold">${clientdisplayName}</td>
                         <td class="text-info font-weight-bold">${clientCustomerId}</td></tr>
                   </tbody>
                 </table>
