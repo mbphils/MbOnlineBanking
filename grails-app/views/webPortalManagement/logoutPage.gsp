@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <title>[Online Banking]</title>
-    <meta name="layout" content="logoutLayout">
+    <meta name="layout" content="homeLayout">
     
   </head>
   

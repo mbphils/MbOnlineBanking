@@ -19,6 +19,9 @@
             <div class="container">
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                     <div class="btn-group" role="group">
+                        <g:link class="btn btn-light" action="userClientPage" controller="webPortalManagement" id="${params.id}" class="dropdown-item" >Home</g:link>
+                    </div>
+                    <div class="btn-group" role="group">
                       <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Manage Accounts
                       </button>
@@ -45,14 +48,11 @@
                         <g:link action="" controller="webPortalManagement" class="dropdown-item" >Request Checkbook</g:link> --%>
                       </div>
                     </div>
-                    <div class="btn-group" role="group">
-                        <g:link class="btn btn-light" action="home" controller="webPortalManagement" id="${params.id}" class="dropdown-item" >Home</g:link>
-
-                    </div>
+                    
                 </div>
                 <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="${createLink(uri: '/admin/home')}">Home</a></li>
+                      <li class="breadcrumb-item"><a href="${createLink(uri: '/webPortalManagement/userClientPage')}">Home</a></li>
                       <li class="breadcrumb-item active" aria-current="page">Link Accounts</li>
                     </ol>
                 </nav>
@@ -67,38 +67,40 @@
                       <td class="text-info font-weight-bold">${clientCustomerId}</td></tr>
                   </tbody>
                 </table>
-                <table class="table table-striped table-bordered">
-                    <thead>
-                      <tr>
-                        <th scope="col">Account No.</th>
-                        <th scope="col">Account Type</th>
-                        <th scope="col">Linked Status</th>
-                        <th scope="col">Remarks</th>
-                        <th scope="col">Actions</th>
-                      </tr>
-                  </thead>
-                  <tbody>
-                    <g:each in="${jmdataHandler}" var="accountLinkedd">  
-                        <tr>
-                            <td>${accountLinkedd.acctNo}</td>
-                            <td>${accountLinkedd.acctType}</td>
-                            <td>${accountLinkedd.status}</td>
-                            <g:if test="${accountLinkedd.remarks == "null"}">
-                                <td></td>
-                            </g:if>
-                            <g:else>
-                                <td>${accountLinkedd.remarks}</td>
-                            </g:else>
-                            <g:if test="${accountLinkedd.status == "Active"}">
-                                <td><button class="btn btn-outline-info" onclick="validateToss('${accountLinkedd.id}')">View Transactions</button></td>
-                            </g:if>
-                            <g:else>
-                                <td><button class="btn btn-outline-danger" disabled="true">Not yet Activated</button></td>
-                            </g:else>    
-                       </tr>
-                    </g:each>    
-                  </tbody>
-                </table>
+                <div class="table-responsive">    
+                    <table class="table table-striped table-bordered">
+                        <thead>
+                          <tr>
+                            <th scope="col">Account No.</th>
+                            <th scope="col">Account Type</th>
+                            <th scope="col">Linked Status</th>
+                            <th scope="col">Remarks</th>
+                            <th scope="col">Actions</th>
+                          </tr>
+                      </thead>
+                      <tbody>
+                        <g:each in="${jmdataHandler}" var="accountLinkedd">  
+                            <tr>
+                                <td>${accountLinkedd.acctNo}</td>
+                                <td>${accountLinkedd.acctType}</td>
+                                <td>${accountLinkedd.status}</td>
+                                <g:if test="${accountLinkedd.remarks == "null"}">
+                                    <td></td>
+                                </g:if>
+                                <g:else>
+                                    <td>${accountLinkedd.remarks}</td>
+                                </g:else>
+                                <g:if test="${accountLinkedd.status == "Active"}">
+                                    <td><button class="btn btn-outline-info" onclick="validateToss('${accountLinkedd.id}')">View Transactions</button></td>
+                                </g:if>
+                                <g:else>
+                                    <td><button class="btn btn-outline-danger" disabled="true">Not yet Activated</button></td>
+                                </g:else>    
+                           </tr>
+                        </g:each>    
+                      </tbody>
+                    </table>
+                </div>
                 <g:form id="myFormXsend" name="myFormXsend" url="[action:'viewAccountTxn',controller:'WebPortalManagement']" method="POST">
                     <g:hiddenField name="ctmitd" id="ctmitd" value="${params.id}" />
                     <g:hiddenField name="lnkitd" id="lnkitd" value="" />

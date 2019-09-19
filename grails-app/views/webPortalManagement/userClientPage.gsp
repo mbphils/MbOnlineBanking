@@ -15,13 +15,20 @@
             </ol>
             <div class="carousel-inner">
               <div class="carousel-item active">
-                <img class="d-block w-100" src="${resource(dir: 'images', file: 'img1.jpg')}" alt="First slide" >
+                <div class="jumbotron text-center rounded bg-dark ">
+                    <h1 class="display-4 font-italic text-danger font-weight-bold animated fadeInDownBig">MB Web-Portal</h1>
+                        <p class="lead text-white font-weight-bold animated fadeInRightBig">Features of MB Web-Portal That Will Make You Interested</p>
+                        <p class="text-white font-italic animated fadeInLeftBig">Thank you for logging in. Be sure to come back !!</p>
+                        <p class="lead"></p>
+                </div>
               </div>
               <div class="carousel-item">
-                <img class="d-block w-100" src="${resource(dir: 'images', file: 'img2.jpg')}" alt="Second slide">
-              </div>
-              <div class="carousel-item">
-                <img class="d-block w-100" src="${resource(dir: 'images', file: 'img3.jpg')}" alt="Third slide">
+                <div class="jumbotron text-center rounded bg-dark ">
+                    <h1 class="display-4 font-italic text-danger font-weight-bold animated fadeInDownBig">MB Web-Portal</h1>
+                        <p class="lead text-white font-weight-bold animated fadeInRightBig">Features of MB Web-Portal That Will Make You Interested</p>
+                        <p class="text-white font-italic animated fadeInLeftBig">Thank you for logging in. Be sure to come back !!</p>
+                        <p class="lead"></p>
+                </div>
               </div>
             </div>
             <a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -33,7 +40,6 @@
               <span class="sr-only">Next</span>
             </a>
         </div>
-        <br>
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
 
             <div class="btn-group" role="group">
@@ -92,9 +98,20 @@
                 <div class="row no-gutters border rounded border-secondary overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position">
                     <div class="col p-4 d-flex flex-column position-static">
                         <strong class="d-inline-block mb-2 text-primary">Accounts Summary</strong>
-                        <h5 class="mb-0">Deposit Accounts <span class="badge badge-warning">9</span></h5>
-                        <h5 class="mb-0">Loan Accounts <span class="badge badge-warning">2</span></h5>
-                        <h5 class="mb-0">Total of Accounts <span class="badge badge-warning">11</span></h5>
+                        <table>
+                            <tr>
+                                <td><h5 class="mb-0">Deposit Accounts</h5></td>
+                                <td><span class="badge badge-warning">9</span></td>  
+                            </tr>
+                            <tr>
+                                <td><h5 class="mb-0">Loan Accountss</h5></td>
+                                <td><span class="badge badge-warning">2</span></td>  
+                            </tr>
+                            <tr>
+                                <td><h5 class="mb-0">Total of Accounts</h5></td>
+                                <td><span class="badge badge-warning">11</span></td>  
+                            </tr>
+                        </table>
                         <br>
                     </div>
                 </div>

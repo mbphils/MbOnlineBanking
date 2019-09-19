@@ -14,6 +14,9 @@
         <div class="container">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                 <div class="btn-group" role="group">
+                    <g:link class="btn btn-light" action="userClientPage" controller="webPortalManagement" id="${params.id}" class="dropdown-item" >Home</g:link>
+                </div>
+                <div class="btn-group" role="group">
                   <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Manage Accounts
                   </button>
@@ -40,10 +43,7 @@
                     <g:link action="" controller="webPortalManagement" class="dropdown-item" >Request Checkbook</g:link> --%>
                   </div>
                 </div>
-                <div class="btn-group" role="group">
-                    <g:link class="btn btn-light" action="home" controller="webPortalManagement" id="${params.id}" class="dropdown-item" >Home</g:link>
-
-                </div>
+                
             </div>
             <nav aria-label="breadcrumb">
                 <ol class="breadcrumb">
@@ -57,7 +57,7 @@
             <g:form id="frmLinkacct" url="[action:'getLinkedAccount',controller:'WebPortalManagement']" method="POST">
                 <div class="form-group ">
                     <g:hiddenField name="acctId" id="acctId" value="${params.id}"/>
-                    <g:hiddenField name="xemail" id="xemail" value="${addAccountMaps.emailAddress}"/>
+                    
                    
                     <label for="inputState">Select Account Type</label>
                     <g:select id="accountType" name="accountType.id" from="${LovAccountType.findAllByStatus(true)}" optionKey="id" optionValue="description" required="" value="" noSelection="['':'Choose Account Type']" class="many-to-one form-control"/>
@@ -252,6 +252,5 @@
             
         }
     </script>
-    <p>BOOM: ${session.usersession}</p>  
     </body>
 </html>

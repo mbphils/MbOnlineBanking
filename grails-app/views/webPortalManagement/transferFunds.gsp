@@ -167,7 +167,9 @@
             
             <div class="container">
                 <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-
+                    <div class="btn-group" role="group">
+                        <g:link class="btn btn-light" action="userClientPage" controller="webPortalManagement" id="${params.id}" class="dropdown-item" >Home</g:link>
+                    </div>
                     <div class="btn-group" role="group">
                       <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                         Manage Accounts
@@ -195,14 +197,11 @@
                         <g:link action="" controller="webPortalManagement" class="dropdown-item" >Request Checkbook</g:link> --%>
                       </div>
                     </div>
-                    <div class="btn-group" role="group">
-                        <g:link class="btn btn-light" action="home" controller="webPortalManagement" id="${params.id}" class="dropdown-item" >Home</g:link>
-
-                    </div>
+                    
                 </div>
               <nav aria-label="breadcrumb">
                     <ol class="breadcrumb">
-                      <li class="breadcrumb-item"><a href="${createLink(uri: '/webPortalManagement/home')}">Home</a></li>
+                      <li class="breadcrumb-item"><a href="${createLink(uri: '/webPortalManagement/userClientPage')}">Home</a></li>
                       <li class="breadcrumb-item active" aria-current="page">Transfer Funds</li>
                     </ol>
                 </nav>

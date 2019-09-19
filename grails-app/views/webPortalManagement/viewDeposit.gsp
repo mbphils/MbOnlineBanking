@@ -9,6 +9,9 @@
     <div class="container">
         <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
             <div class="btn-group" role="group">
+                <g:link class="btn btn-light" action="userClientPage" controller="webPortalManagement" id="${params.id}" class="dropdown-item" >Home</g:link>
+            </div>
+            <div class="btn-group" role="group">
               <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                 Manage Accounts
               </button>
@@ -35,15 +38,18 @@
                 <g:link action="" controller="webPortalManagement" class="dropdown-item" >Request Checkbook</g:link> --%>
               </div>
             </div>
-            <div class="btn-group" role="group">
-                <g:link class="btn btn-light" action="home" controller="webPortalManagement" id="${params.id}" class="dropdown-item" >Home</g:link>
-
-            </div>
+            
         </div>
         <br>
         <h3 class="pb-4 mb-4 border-bottom text-title1 border-info">
              Account Information
         </h3>
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+              <li class="breadcrumb-item"><a href="${createLink(uri: '/webPortalManagement/userClientPage')}">Home</a></li>
+              <li class="breadcrumb-item active" aria-current="page">Account Information</li>
+            </ol>
+        </nav>
         <div class="row">
             <div class="col-sm-6">
                 <div class="row no-gutters border rounded border-secondary overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
@@ -98,38 +104,40 @@
         <h3 class="pb-4 mb-4 border-bottom text-title1 border-info">
             Deposit Transactions
         </h3>
-        <table class="table table-striped table-bordered">
-            <thead>
-                <tr>
-                  <th scope="col">Reference</th>
-                  <th scope="col">Description</th>
-                  <th scope="col">Transaction Date</th>
-                  <th scope="col">Debit</th>
-                  <th scope="col">Credit</th>
-                  <th scope="col">Balance</th>
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                      <th scope="col">Reference</th>
+                      <th scope="col">Description</th>
+                      <th scope="col">Transaction Date</th>
+                      <th scope="col">Debit</th>
+                      <th scope="col">Credit</th>
+                      <th scope="col">Balance</th>
 
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <th scope="row">12345</th>
-                    <td>Testing</td>
-                    <td>2019-08-01</td>
-                    <td>1000</td>
-                    <td></td>
-                    <td>1000</td>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <th scope="row">12345</th>
+                        <td>Testing</td>
+                        <td>2019-08-01</td>
+                        <td>1000</td>
+                        <td></td>
+                        <td>1000</td>
 
-                </tr>
-                <tr>
-                    <th scope="row">67890</th>
-                    <td>Testing</td>
-                    <td>2019-08-01</td>
-                    <td></td>
-                    <td>500</td>
-                    <td>500</td>
-                </tr>
-            </tbody>
-        </table>
+                    </tr>
+                    <tr>
+                        <th scope="row">67890</th>
+                        <td>Testing</td>
+                        <td>2019-08-01</td>
+                        <td></td>
+                        <td>500</td>
+                        <td>500</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
     </div>
 </body>
 </html>
