@@ -62,8 +62,8 @@
                 <table class="table table-borderless">
                   <tbody>
                     <tr>
-                        <td class="font-weight-bold"><h5>Customer Name <br> <p class="text-success"> ${clientdisplayName}</p></h5>
-                        <td class="font-weight-bold"><h5>Customer ID <br> <p class="text-danger"> ${clientCustomerId}</p></h5></td>
+                        <td class="font-weight-bold"><h5>Customer Name <br> <p class="text-success" style="text-transform: capitalize;"> ${clientdisplayName}</p></h5>
+                        <td class="font-weight-bold"><h5>Customer ID <br> <p class="text-danger" style="text-transform: capitalize;"> ${clientCustomerId}</p></h5></td>
                     </tr>
                   </tbody>
                 </table>
