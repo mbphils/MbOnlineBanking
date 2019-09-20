@@ -47,62 +47,63 @@
                   <li class="breadcrumb-item active" aria-current="page">Accounts Transactions</li>
                 </ol>
             </nav>
-            <h3>Account Information</h3>
             <div class="row">
                 <div class="col-sm-6">
-                    <div class="row no-gutters  overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                        <table class="table table-sm table-striped table-bordered table-hover">
-                            <tbody>
-                                <tr>
-                                    <td class="font-weight-bold"><p> Customer Name</p></td>
-                                    <td><p>${acctInformationValues?.clientdisplayName}</p></td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold"><p>Customer ID</p></td>
-                                    <td><p>${acctInformationValues?.clientCustomerId}</p></td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold"><p>Account No.</p></td>
-                                    <td><p>${acctInformationValues?.acctdepositAcctNo}</p></td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold"><p>Deposit Type</p></td>
-                                    <td><p>${acctInformationValues?.acctdepositType}</p></td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold"><p>Deposit Status</p></td>
-                                    <td class="text-success font-weight-bold"><p>${acctInformationValues?.acctdepositStatus}</p></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <h3 class="pb-4 mb-4 border-bottom text-title1 border-info">
+                        Account Information
+                    </h3>
+                    <table class="table table-sm table-striped table-bordered table-hover">
+                        <tbody>
+                            <tr>
+                                <td class="font-weight-bold"><p> Customer Name</p></td>
+                                <td><p>${acctInformationValues?.clientdisplayName}</p></td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold"><p>Customer ID</p></td>
+                                <td><p>${acctInformationValues?.clientCustomerId}</p></td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold"><p>Account No.</p></td>
+                                <td><p>${acctInformationValues?.acctdepositAcctNo}</p></td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold"><p>Deposit Type</p></td>
+                                <td><p>${acctInformationValues?.acctdepositType}</p></td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold"><p>Deposit Status</p></td>
+                                <td class="text-success font-weight-bold"><p>${acctInformationValues?.acctdepositStatus}</p></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
                 <div class="col-sm-6">
-                    <div class="row no-gutters  overflow-hidden flex-md-row mb-4 shadow-sm h-md-250 position-relative">
-                        <table class="table table-sm table-striped table-bordered table-hover">
-                            <tbody>
-                                <tr>
-                                    <td class="font-weight-bold"><p> Ledger Balance</p></td>
-                                    <td><p><g:formatNumber format="###,###,##0.00" number="${acctInformationValues?.acctdepositLedger}"/></p></td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold"><p> Available Balance</p></td>
-                                    <td><p><g:formatNumber format="###,###,##0.00" number="${acctInformationValues?.acctdepositAvailable}"/></p></td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold"><p> Uncleared Balance</p></td>
-                                    <td><p><g:formatNumber format="###,###,##0.00" number="${acctInformationValues?.acctdepositUnclearedBalance}"/></p></td>
-                                </tr>
-                                <tr>
-                                    <td class="font-weight-bold "><p> Hold Balance</p></td>
-                                    <td><p><g:formatNumber format="###,###,##0.00" number="${acctInformationValues?.acctdepositHoldBalance}"/></p></td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
+                    <h3 class="pb-4 mb-4 border-bottom text-title1 border-info">
+                        Balance Information
+                    </h3>
+                    <table class="table table-sm table-striped table-bordered table-hover">
+                        <tbody>
+                            <tr>
+                                <td class="font-weight-bold"><p> Current Balance</p></td>
+                                <td><p><g:formatNumber format="###,###,##0.00" number="${acctInformationValues?.acctdepositLedger}"/></p></td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold"><p> Available Balance</p></td>
+                                <td><p><g:formatNumber format="###,###,##0.00" number="${acctInformationValues?.acctdepositAvailable}"/></p></td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold"><p> Uncleared Balance</p></td>
+                                <td><p><g:formatNumber format="###,###,##0.00" number="${acctInformationValues?.acctdepositUnclearedBalance}"/></p></td>
+                            </tr>
+                            <tr>
+                                <td class="font-weight-bold "><p> Hold Balance</p></td>
+                                <td><p><g:formatNumber format="###,###,##0.00" number="${acctInformationValues?.acctdepositHoldBalance}"/></p></td>
+                            </tr>
+                        </tbody>
+                    </table>
                 </div>
             </div>
-            <h3>Accounts Transactions</h3>
+            <h3>Account Transactions</h3>
             <div class="table-responsive">
                 <table id = "mattDatatable" class="table table-sm table-striped table-bordered table-hover">
                     <thead>
