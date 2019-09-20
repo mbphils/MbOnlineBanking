@@ -84,11 +84,11 @@
                         <div class="row">
                             <div class="col-sm-6">
                                 <h5 class="mb-0 " >Customer name</h5>
-                                <div class="mb-1 text-muted">${displayName}</div>
+                                <div class="mb-1 text-muted" style="text-transform: capitalize;">${displayName}</div>
                             </div>
                             <div class="col-sm-6">
                                 <h5 class="mb-0 " >Customer address</h5>
-                                <div class="mb-1 text-muted">${homeAddress}</div>
+                                <div class="mb-1 text-muted" style="text-transform: capitalize;">${homeAddress}</div>
                             </div>
                         </div>
                     </div>
@@ -104,7 +104,7 @@
                                 <td><span class="badge badge-warning">9</span></td>  
                             </tr>
                             <tr>
-                                <td><h5 class="mb-0">Loan Accountss</h5></td>
+                                <td><h5 class="mb-0">Loan Accounts</h5></td>
                                 <td><span class="badge badge-warning">2</span></td>  
                             </tr>
                             <tr>
