@@ -55,8 +55,8 @@
                     <table class="table table-sm table-striped table-bordered table-hover">
                         <tbody>
                             <tr>
-                                <td class="font-weight-bold" width="70%"><p> Customer Name</p></td>
-                                <td width="30%"><p>${acctInformationValues?.clientdisplayName}</p></td>
+                                <td class="font-weight-bold" width="40%"><p> Customer Name</p></td>
+                                <td width="60%"><p>${acctInformationValues?.clientdisplayName}</p></td>
                             </tr>
                             <tr>
                                 <td class="font-weight-bold"><p>Customer ID</p></td>
@@ -84,8 +84,8 @@
                     <table class="table table-sm table-striped table-bordered table-hover">
                         <tbody>
                             <tr>
-                                <td class="font-weight-bold" width="70%"><p> Current Balance</p></td>
-                                <td width="30%"><p><g:formatNumber format="###,###,##0.00" number="${acctInformationValues?.acctdepositLedger}"/></p></td>
+                                <td class="font-weight-bold" width="40%"><p> Current Balance</p></td>
+                                <td width="60%"><p><g:formatNumber format="###,###,##0.00" number="${acctInformationValues?.acctdepositLedger}"/></p></td>
                             </tr>
                             <tr>
                                 <td class="font-weight-bold"><p> Available Balance</p></td>
