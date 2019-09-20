@@ -56,7 +56,7 @@
                         <tbody>
                             <tr>
                                 <td class="font-weight-bold" width="40%"><p> Customer Name</p></td>
-                                <td width="60%"><p>${acctInformationValues?.clientdisplayName}</p></td>
+                                <td width="60%" style="text-transform: capitalize;"><p>${acctInformationValues?.clientdisplayName}</p></td>
                             </tr>
                             <tr>
                                 <td class="font-weight-bold"><p>Customer ID</p></td>
