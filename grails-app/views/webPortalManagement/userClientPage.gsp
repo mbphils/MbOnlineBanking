@@ -6,6 +6,13 @@
     <meta name="layout" content="homeLayout">
   </head>
 <body>
+    <script>
+        function validateToss(lnk){
+            console.log("lnk: "+lnk);
+            $('#lnkitd').val(lnk);
+            $('#myFormXsend').submit();
+        }
+    </script> 
     <div class="container">
         <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
             <ol class="carousel-indicators">
@@ -80,15 +87,15 @@
                     <div class="col p-4 d-flex flex-column position-static">
                         <strong class="d-inline-block mb-2 text-primary">Customer Information</strong>
                         <h5 class="mb-0 " >Customer ID</h5>
-                        <div class="mb-1 text-muted">${encryptCustomerId}</div>
+                        <div class="mb-1 text-muted">${customerInformation?.encryptCustomerId}</div>
                         <div class="row">
                             <div class="col-sm-6">
                                 <h5 class="mb-0 " >Customer name</h5>
-                                <div class="mb-1 text-muted" style="text-transform: capitalize;">${displayName}</div>
+                                <div class="mb-1 text-muted" style="text-transform: capitalize;">${customerInformation?.displayName}</div>
                             </div>
                             <div class="col-sm-6">
                                 <h5 class="mb-0 " >Customer address</h5>
-                                <div class="mb-1 text-muted" style="text-transform: capitalize;">${homeAddress}</div>
+                                <div class="mb-1 text-muted" style="text-transform: capitalize;">${customerInformation?.homeAddress}</div>
                             </div>
                         </div>
                     </div>
@@ -103,10 +110,10 @@
                                 <td><h5 class="mb-0">Deposit Accounts</h5></td>
                                 <td><span class="badge badge-warning">9</span></td>  
                             </tr>
-                            <tr>
+                            <%--<tr>
                                 <td><h5 class="mb-0">Loan Accounts</h5></td>
                                 <td><span class="badge badge-warning">2</span></td>  
-                            </tr>
+                            </tr> --%>
                             <tr>
                                 <td><h5 class="mb-0">Total of Accounts</h5></td>
                                 <td><span class="badge badge-warning">11</span></td>  
@@ -123,43 +130,28 @@
         <table class="table table-striped table-bordered">
             <thead>
                 <tr>
-                  <th scope="col">#</th>
-                  <th scope="col">First</th>
-                  <th scope="col">Last</th>
-                  <th scope="col">Handle</th>
-                  <th scope="col">Action</th>
+                  
+                  <th scope="col">Account No</th>
+                  <th scope="col">Branch</th>
+                  <th scope="col">Product</th>
+                  <th scope="col">Deposit Type</th>
+                  <th scope="col">Status</th>
 
                 </tr>
             </thead>
             <tbody>
+                <g:each in="${depositsHandler}" var="depositInstance" >
                 <tr>
-                    <th scope="row">1</th>
-                    <td>Mark</td>
-                    <td>Otto</td>
-                    <td>@mdo</td>
-                    <td><g:link class="btn btn-primary" action="viewDeposit" controller="webPortalManagement" id="${params.id}">View Details</g:link></td>
-
+                    <td>${depositInstance?.acctNo}</td>
+                    <td>${depositInstance?.branch}</td>
+                    <td>${depositInstance?.product}</td>
+                    <td>${depositInstance?.type}</td>
+                    <td><button class="btn btn-outline-info" onclick="validateToss('${depositInstance?.id}')">View Details</button></td>
                 </tr>
-                <tr>
-                    <th scope="row">2</th>
-                    <td>Jacob</td>
-                    <td>Thornton</td>
-                    <td>@fat</td>
-                    <td><button class="btn btn-primary"><g:link action="viewDeposit" controller="webPortalManagement" id="${params.id}"></g:link>View Details</button></td>
-
-
-                </tr>
-                <tr>
-                    <th scope="row">3</th>
-                    <td>Larry</td>
-                    <td>the Bird</td>
-                    <td>@twitter</td>
-                    <td><button class="btn btn-primary"><g:link action="viewDeposit" controller="webPortalManagement" id="${params.id}"></g:link>View Details</button></td>
-
-
-                </tr>
+                </g:each>
             </tbody>
         </table>
+        <%--
         <h3 class="pb-4 mb-4 border-bottom text-title1 border-info">
             Loan Accounts
         </h3>
@@ -193,6 +185,11 @@
               </tr>
             </tbody>
         </table>
+        comment for a while loan module --%>
+        <g:form id="myFormXsend" name="myFormXsend" url="[action:'viewAccountTxn',controller:'WebPortalManagement']" method="POST">
+            <g:hiddenField name="ctmitd" id="ctmitd" value="${params.id}" />
+            <g:hiddenField name="lnkitd" id="lnkitd" value="" />
+        </g:form>
     </div>
 </body>
 </html>

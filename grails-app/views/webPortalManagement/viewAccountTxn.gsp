@@ -11,15 +11,15 @@
         <div class="container">
             <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
                 <div class="btn-group" role="group">
-                    <g:link class="btn btn-light" action="userClientPage" controller="webPortalManagement" id="${params.id}" class="dropdown-item" >Home</g:link>
+                    <g:link class="btn btn-light" action="userClientPage" controller="webPortalManagement" id="${session.user}" class="dropdown-item" >Home</g:link>
                 </div>
                 <div class="btn-group" role="group">
                   <button id="btnGroupDrop1" type="button" class="btn btn-light dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     Manage Accounts
                   </button>
                   <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                    <g:link action="addAccount" controller="webPortalManagement" id="${params.id}" class="dropdown-item" >Add/Link Account</g:link>
-                    <g:link action="accountOverview" controller="webPortalManagement" id="${params.id}" class="dropdown-item" >View Link Account </g:link>
+                    <g:link action="addAccount" controller="webPortalManagement" id="${session.user}" class="dropdown-item" >Add/Link Account</g:link>
+                    <g:link action="accountOverview" controller="webPortalManagement" id="${session.user}" class="dropdown-item" >View Link Account </g:link>
                   </div>
                 </div>
                 <div class="btn-group" role="group">
@@ -27,11 +27,11 @@
                     Transactions
                   </button>
                   <div class="dropdown-menu" aria-labelledby="btnGroupDrop1">
-                    <g:if test="${params.id}">
-                        <g:link action="transferFunds" controller="webPortalManagement" id="${params.id}" class="dropdown-item" >Transfer Funds</g:link>
+                    <g:if test="${session.user}">
+                        <g:link action="transferFunds" controller="webPortalManagement" id="${session.user}" class="dropdown-item" >Transfer Funds</g:link>
                     </g:if>
                     <g:else>
-                        <g:link action="transferFunds" controller="webPortalManagement" id="${xParms}" class="dropdown-item" >Transfer Funds</g:link>
+                        <g:link action="transferFunds" controller="webPortalManagement" id="${session.user}" class="dropdown-item" >Transfer Funds</g:link>
                     </g:else>
 
                     <%--<g:link action="paybills" controller="webPortalManagement" class="dropdown-item" >Bills Payment</g:link>
@@ -118,6 +118,7 @@
                       </tr>
                   </thead>
                   <tbody>
+                        <g:if test="${jmdataHandler}" >
                         <g:each in="${jmdataHandler}" var="acctTransactionList">    
                         <tr>
                             <td><g:formatDate  format="MM/dd/yyyy" date="${acctTransactionList.txnDate}" /></td>
@@ -129,7 +130,13 @@
                             <td><g:formatNumber format="###,###,##0.00" number="${acctTransactionList.creditAmt}"/></td>
                             <td><g:formatNumber format="###,###,##0.00" number="${acctTransactionList.balance}"/></td>
                         </tr>
-                    </g:each>  
+                        </g:each> 
+                        </g:if> 
+                        <g:else>
+                            <tr>
+                                <td colspan="7" style="text-align: center;font-style: italic;color: green;">There were no transactions to show</td>
+                            </tr>    
+                        </g:else>    
                   </tbody>
                 </table>
             </div>

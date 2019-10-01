@@ -23,6 +23,7 @@ import org.apache.commons.codec.binary.Base64;
 class WebPortalManagementController {
     
     private static final DateFormat giezelDateFormater = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss"); // ito giezel need
+    private static final DateFormat onlineBankingRefDate = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss:SSS");
     private HttpURLConnection  myURLConnection;
     def dataSource 
     static allowedMethods = [save: "POST", update: ["PUT","POST"], delete: "DELETE", saveCharge: "PUT"]
@@ -584,18 +585,10 @@ class WebPortalManagementController {
         String resultFailedSuccess = informationResultValue[0].toString()
         if(resultFailedSuccess == "sucess"){
             
-            
-            // encode clientId for security purposes
-            String combineEncapsulate = "webXsecurityMicroBankersPhilippinesIncorporationWebBankingOnline@##%"+informationResultValue[1].toString()
-            //firstEncode
-            byte[] encodedBytes = Base64.encodeBase64(combineEncapsulate.getBytes());
-            //secondEncode
-            resultValue = new String(encodedBytes)
-            println("first encode: "+resultValue)
-            byte[] encodedBytes2 = Base64.encodeBase64(resultValue.getBytes());
-            resultValue = new String(encodedBytes2)
-            println("second encode: "+resultValue)
+            // resultValue is the main variable
+            resultValue = refreshUserSession(informationResultValue[1].toString())
             session.usersession = informationResultValue[1].toString()
+            session.user = resultValue
             //session.session_timeout = WebConfig.findByParamCode('GEN.1004').paramValue
             reponseWebPortal << [reponseCode:'xxxx', responsetexx:resultValue,reponseResult:resultFailedSuccess]
             //redirect(controller: "WebPortalManagement", action: "userClientPage",id: resultValue)  
@@ -634,6 +627,7 @@ class WebPortalManagementController {
                 println("sucess force logout")
                 resultValue = resultFailedSuccess
                 session.usersession = null
+                session.user = null
                 reponseWebPortal << [reponseCode:'xxxx', responsetexx:resultValue,reponseResult:resultFailedSuccess]
             }
 
@@ -646,6 +640,7 @@ class WebPortalManagementController {
         println("============== USER CLIENT PAGE ===========")
         println("params: "+params)
         def paramID = params.id
+        def customerInformation = [:]
         if(paramID){
             // first decode
             byte[] decodedBytes = Base64.decodeBase64(paramID.toString());
@@ -660,6 +655,11 @@ class WebPortalManagementController {
             println("splitTrueValueClientID[0]: "+splitTrueValueClientID[0])
             println("splitTrueValueClientID[1]: "+splitTrueValueClientID[1])
             def clientIDx = splitTrueValueClientID[1]
+            
+            // referesh session
+            resultValue = refreshUserSession(clientIDx.toString())
+            session.usersession = clientIDx.toString()
+            session.user = resultValue
             //============================================
             String defaultProcessMethod = "inqGetClientInformation"
                 println("=========== SHOW CLIENT INFORMATION ===============")
@@ -681,6 +681,30 @@ class WebPortalManagementController {
                 }
                 //resultValue = resultValue.def sssInformation = theReturnValue.split("@@#")
                 def informationResultValue = resultValue.split("@@<>");
+                
+                //============================= FETCH DEPOSIT INFORMATION OF CUSTOMER ========================
+               
+                def depositsHandler = []
+                def counter = 0 
+                def depositLoopResultSet = informationResultValue[7].toString().split("@@<#")
+
+                for(xDep in depositLoopResultSet){
+                    println("xDep: "+xDep)
+                    println("xDep1: ")
+                    // listing of deposit accounts
+                    def arrayGetterFromSplit = xDep.toString().split("##")
+                    // linked Account Maps is used to mapped the data when it is in the web page.
+                    def depositInformation = [:]
+                    depositInformation.put('id',arrayGetterFromSplit[0])
+                    depositInformation.put('acctNo',arrayGetterFromSplit[1])
+                    depositInformation.put('branch',arrayGetterFromSplit[2])
+                    depositInformation.put('product',arrayGetterFromSplit[3])
+                    depositInformation.put('type',arrayGetterFromSplit[4])
+                    depositInformation.put('status',arrayGetterFromSplit[5])
+                    depositsHandler[counter] = depositInformation
+                    counter = counter + 1;
+                }
+                //============================= END FETCH DEPOSIT INFORMATION OF CUSTOMER ========================
                 def reponseWebPortal = []
 
                 println("responsetexx: "+resultValue)
@@ -688,14 +712,17 @@ class WebPortalManagementController {
                 String resultFailedSuccess = informationResultValue[0].toString()
                 if(resultFailedSuccess == "success"){
                     
-                    
-                    def displayName = informationResultValue[2].toString()
-                    def encryptCustomerId = "XXXX-XXXX"+informationResultValue[1].substring(8,informationResultValue[1].length())
-                    def homeAddress = informationResultValue[4].toString()
                     def emailAddress = informationResultValue[5].toString()
                     session.emailAddresss = emailAddress
-                    def mobileNumber = informationResultValue[6].toString()
-                    [displayName: displayName,encryptCustomerId:encryptCustomerId,homeAddress:homeAddress,emailAddress:emailAddress,mobileNumber:mobileNumber]
+
+                    
+                    customerInformation.put('displayName',informationResultValue[2].toString())
+                    customerInformation.put('encryptCustomerId',"XXXX-XXXX"+informationResultValue[1].substring(8,informationResultValue[1].length()))
+                    customerInformation.put('homeAddress',informationResultValue[4].toString())
+                    customerInformation.put('mobileNumber',informationResultValue[6].toString())
+                    customerInformation.put('emailAddress',informationResultValue[5].toString())
+                    
+                    [customerInformation:customerInformation,depositsHandler:depositsHandler]
 
                 }else{
 
@@ -727,6 +754,7 @@ class WebPortalManagementController {
             def splitTrueValueClientID = paramID.split("@##%")
             println("splitTrueValueClientID[0]: "+splitTrueValueClientID[0])
             println("splitTrueValueClientID[1]: "+splitTrueValueClientID[1])
+            
             def clientIDx = splitTrueValueClientID[1]
             // ========= START OF CODE ==============
             params.put("customerId",clientIDx)
@@ -783,6 +811,10 @@ class WebPortalManagementController {
             println("splitTrueValueClientID[0]: "+splitTrueValueClientID[0])
             println("splitTrueValueClientID[1]: "+splitTrueValueClientID[1])
             def clientIDx = splitTrueValueClientID[1]
+            // referesh session
+            resultValue = refreshUserSession(clientIDx.toString())
+            session.usersession = clientIDx.toString()
+            session.user = resultValue
             // ========= START OF CODE ==============
             params.put("customerId",clientIDx)
             params.put("linkId",paramsLnk)
@@ -865,7 +897,7 @@ class WebPortalManagementController {
                 
             }else{
                 
-                [jmdataHandler:jmdataHandler,clientdisplayName:clientdisplayName,clientCustomerId:clientCustomerId,acctdepositType:acctdepositType,acctdepositStatus:acctdepositStatus,acctdepositAcctNo:acctdepositAcctNo]
+                [jmdataHandler:jmdataHandler,acctInformationValues:acctInformationValues]
             }
             //============================================
         }    
@@ -932,7 +964,6 @@ class WebPortalManagementController {
         println("Email Sent to : "+emailAdd)
         println("Code : "+regCode)
         println("==================================================")
-        session.emailAddresss = null
         def reponseWebPortal = []
         reponseWebPortal << [reponseCode:'xxxx', responsetexx:regCode]
         render reponseWebPortal as grails.converters.JSON
@@ -1079,6 +1110,27 @@ class WebPortalManagementController {
     }
     def viewDeposit(){
         println("pumasok")
+    }
+    
+    def refreshUserSession(String clientId){
+        println("====================== refreshUserSession =========================")
+        Date date = new Date();
+        String refDetails = ""+onlineBankingRefDate.format(date).toString();
+        refDetails = refDetails.replaceAll(" ", "").toLowerCase()
+        refDetails = refDetails.replaceAll("-", "").toLowerCase()
+        refDetails = refDetails.replaceAll(":", "").toLowerCase()
+        // encode clientId for security purposes
+        String combineEncapsulate = refDetails+"webXsecurityMicroBankersPhilippinesIncorporationWebBankingOnline@##%"+clientId.toString()
+        //firstEncode
+        byte[] encodedBytes = Base64.encodeBase64(combineEncapsulate.getBytes());
+        //secondEncode
+        resultValue = new String(encodedBytes)
+
+        byte[] encodedBytes2 = Base64.encodeBase64(resultValue.getBytes());
+        resultValue = new String(encodedBytes2)
+
+        println("NEW USERSESSION ENCODE: "+resultValue)
+        return resultValue
     }
     
     
