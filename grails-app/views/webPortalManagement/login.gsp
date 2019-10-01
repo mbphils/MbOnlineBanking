@@ -124,7 +124,7 @@
                                     </div>
                                     <g:hiddenField name="urlredirectInstance" id="urlredirectInstance" value="${urlRedirectInstance}" />
                                     <div class="form-group">
-                                        <label>Not yet Enrolled??</label>
+                                        <label>Not yet Enrolled?</label>
                                         <g:link action="agreement" controller="webPortalManagement" >Enroll Now</g:link>
 
                                     </div>

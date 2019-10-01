@@ -12,7 +12,7 @@
                     <div class="container">
                         <h1 class="display-4 animated bounceInDown text-warning" ><span class=" fa fa-warning text-warning"></span> Sorry your account is not yet activated</h1>
                         <p class="lead animated bounceInUp">Please go to the bank to activate your account. Thank you</p>
-                        <g:link class="btn btn-outline-secondary text-white btn-lg animated fadeInUpBig"  action="login" ><span class="fa fa-lock"></span> Login Page</g:link>
+                        <g:link class="btn btn-outline-secondary text-white btn-lg animated fadeInUpBig"  action="login" >Login Page</g:link>
                     </div>
                 </div>
                 <div class="card " style="box-shadow: 0 4px 10px  0 rgba(0, 0, 0, 0.2), 0 8px 10px 0 rgba(0, 0, 0, 0.19);">

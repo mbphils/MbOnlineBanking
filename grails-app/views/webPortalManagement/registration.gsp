@@ -428,8 +428,8 @@
                             
 
                             <%--<input class="btn btn-lg btn-primary btn-block" value="Register" type="submit"> --%>
-                            <button class="btn btn-lg btn-warning btn-block" onclick="validateFields();">Register</button>
-                             <button class="btn btn-lg btn-warning btn-block" onclick="xtoggelModal();">Toggle</button>
+                            <button class="btn btn-lg btn-outline-warning btn-block" onclick="validateFields();">Register</button>
+                            <g:link class="btn btn-outline-success text-white btn-lg btn-block"  action="login" >Login Page</g:link>
                             <%--<button class="btn btn-lg btn-success btn-block" onclick="validateFields();">Login</button> --%>
                             
                         </div>
