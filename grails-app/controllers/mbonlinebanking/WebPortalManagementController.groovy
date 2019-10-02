@@ -1122,7 +1122,7 @@ class WebPortalManagementController {
         println("refDetails: "+refDetails1One)
         
         refDetails1One = refDetails1One.replaceAll("-", "").toLowerCase()
-        
+        def regCode = passcodeMaker()
         def timeDetailss = refDetails1One.split(":");
         refDetails1One = timeDetailss[1] +''+timeDetailss[2]+''+timeDetailss[3]+''+timeDetailss[0]
         def timexs = timeDetailss[1] +''+timeDetailss[2]+''+timeDetailss[3]
@@ -1130,7 +1130,7 @@ class WebPortalManagementController {
         //refDetails = refDetails.replaceAll(":", "").toLowerCase()
         // encode clientId for security purposes
         //String combineEncapsulate = refDetails+"webXsecurity"+timexs+"MicroBankersPhilippines"+timexs+"WebBankingOnline@##%"+clientId.toString()
-        String combineEncapsulate = timexs+""+timeDetailss[3]+"@##%"+clientId.toString()+"@##%"+timeDetailss[2]
+        String combineEncapsulate = regCode+timexs+""+timeDetailss[3]+"@##%"+clientId.toString()+"@##%"+regCode
         //firstEncode
         byte[] encodedBytes = Base64.encodeBase64(combineEncapsulate.getBytes());
         //secondEncode

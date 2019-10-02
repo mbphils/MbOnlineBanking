@@ -52,8 +52,6 @@
             if(systemDownForMaintenance.toUpperCase() == "TRUE"){
                console.log("system down");
                window.location.href="${createLink(controller:'WebPortalManagement', action:'rdrLandingPage')}"
-            }else{
-               window.location.href="${createLink(controller:'WebPortalManagement', action:'login')}"
             }
         // ready function
         $( document ).ready(function() {

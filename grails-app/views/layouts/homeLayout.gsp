@@ -78,8 +78,6 @@
             if(systemDownForMaintenance.toUpperCase() == "TRUE"){
                console.log("system down");
                window.location.href="${createLink(controller:'WebPortalManagement', action:'rdrLandingPage')}"
-            }else{
-               window.location.href="${createLink(controller:'WebPortalManagement', action:'login')}"
             }
         function date_time(id){
             date = new Date;
