@@ -1,4 +1,5 @@
 <!DOCTYPE html>
+<%@ page import="mbonlinebanking.WebConfig" %>
 <html>
   <head>
     <meta charset="UTF-8" />
@@ -13,7 +14,7 @@
     
   </head>
   
-    <body >
+    <body>
         <div class="cover-container d-flex h-100 p-3 mx-auto flex-column">
             <header class="masthead mb-auto">
 <!--              <div class="inner">
@@ -43,6 +44,12 @@
               </div>-->
             </footer>
         </div>
-        
+        <script>
+            var systemDownForMaintenance = '${WebConfig.findByParamCode("GEN.1002").paramValue}';
+            if(systemDownForMaintenance.toUpperCase() == "FALSE"){
+               console.log("system down");
+               window.location.href="${createLink(controller:'WebPortalManagement', action:'login')}"
+            }
+        </script>    
     </body>
 </html>

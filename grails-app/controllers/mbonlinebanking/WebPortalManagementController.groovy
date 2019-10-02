@@ -339,6 +339,8 @@ class WebPortalManagementController {
                 println("first encode: "+resultValue)
                 byte[] encodedBytes2 = Base64.encodeBase64(resultValue.getBytes());
                 resultValue = new String(encodedBytes2)
+                
+                
                 println("second encode: "+resultValue)
                 redirect(action: 'accountOverview',controller: 'webPortalManagement',id:resultValue)
             }else{
@@ -1114,13 +1116,21 @@ class WebPortalManagementController {
     
     def refreshUserSession(String clientId){
         println("====================== refreshUserSession =========================")
-        Date date = new Date();
-        String refDetails = ""+onlineBankingRefDate.format(date).toString();
-        refDetails = refDetails.replaceAll(" ", "").toLowerCase()
-        refDetails = refDetails.replaceAll("-", "").toLowerCase()
-        refDetails = refDetails.replaceAll(":", "").toLowerCase()
+        Date dateOne = new Date();
+        String refDetails1One = ""+onlineBankingRefDate.format(dateOne).toString();
+        refDetails1One = refDetails1One.replaceAll(" ", "").toLowerCase()
+        println("refDetails: "+refDetails1One)
+        
+        refDetails1One = refDetails1One.replaceAll("-", "").toLowerCase()
+        
+        def timeDetailss = refDetails1One.split(":");
+        refDetails1One = timeDetailss[1] +''+timeDetailss[2]+''+timeDetailss[3]+''+timeDetailss[0]
+        def timexs = timeDetailss[1] +''+timeDetailss[2]+''+timeDetailss[3]
+        println("refDetails1One: "+refDetails1One)
+        //refDetails = refDetails.replaceAll(":", "").toLowerCase()
         // encode clientId for security purposes
-        String combineEncapsulate = refDetails+"webXsecurityMicroBankersPhilippinesIncorporationWebBankingOnline@##%"+clientId.toString()
+        //String combineEncapsulate = refDetails+"webXsecurity"+timexs+"MicroBankersPhilippines"+timexs+"WebBankingOnline@##%"+clientId.toString()
+        String combineEncapsulate = timexs+""+timeDetailss[3]+"@##%"+clientId.toString()+"@##%"+timeDetailss[2]
         //firstEncode
         byte[] encodedBytes = Base64.encodeBase64(combineEncapsulate.getBytes());
         //secondEncode

@@ -31,7 +31,13 @@
     
     <g:javascript> 
        
-        
+        var systemDownForMaintenance = '${WebConfig.findByParamCode("GEN.1002").paramValue}';
+            if(systemDownForMaintenance.toUpperCase() == "TRUE"){
+               console.log("system down");
+               window.location.href="${createLink(controller:'WebPortalManagement', action:'rdrLandingPage')}"
+            }else{
+
+            }
         var loginAttempsCounter = 0;
         function validateFields(){
             

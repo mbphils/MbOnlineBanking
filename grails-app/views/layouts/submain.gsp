@@ -48,11 +48,19 @@
     <asset:javascript src="js/sweetAlertFunctions.js"/>
 <!--    <asset:javascript src="js/jquery-3.3.1.js"/>-->
    <script>
+       var systemDownForMaintenance = '${WebConfig.findByParamCode("GEN.1002").paramValue}';
+            if(systemDownForMaintenance.toUpperCase() == "TRUE"){
+               console.log("system down");
+               window.location.href="${createLink(controller:'WebPortalManagement', action:'rdrLandingPage')}"
+            }else{
+               window.location.href="${createLink(controller:'WebPortalManagement', action:'login')}"
+            }
         // ready function
         $( document ).ready(function() {
             
             callLogNotice();
         });
+        
         //============================== LOG NOTICE =======================================
         function callLogNotice(){
             console.log('%cSTOP! ', 'color: #FF5733;font-size:50px');
