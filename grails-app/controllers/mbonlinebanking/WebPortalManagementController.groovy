@@ -422,8 +422,9 @@ class WebPortalManagementController {
             if("Echo".equals(action)){
                 System.out.println("AAA");
                 jmXConnectionUrl = WebConfig.findByParamCode("GEN.1001").paramValue.toString()
+                // http://192.168.0.44:8090/icbs/atmInterfaceListener
                 jmXSecurityCode = WebConfig.findByParamCode("GEN.1003").paramValue.toString()
-                
+                // 123456789
                 println("jmXConnectionUrl: "+jmXConnectionUrl)
                 println("jmXSecurityCode: "+jmXSecurityCode)
                 url = new URL(jmXConnectionUrl);
@@ -685,16 +686,20 @@ class WebPortalManagementController {
                 def informationResultValue = resultValue.split("@@<>");
                 
                 //============================= FETCH DEPOSIT INFORMATION OF CUSTOMER ========================
-               
+                println("informationResultValue"+informationResultValue)
+                //if (informationResultValue != '')
                 def depositsHandler = []
                 def counter = 0 
                 def depositLoopResultSet = informationResultValue[7].toString().split("@@<#")
+                println("depositLoopResultSet"+depositLoopResultSet)
+                 
+                if (informationResultValue != depositLoopResultSet)
 
                 for(xDep in depositLoopResultSet){
                     println("xDep: "+xDep)
                     println("xDep1: ")
-                    // listing of deposit accounts
-                    def arrayGetterFromSplit = xDep.toString().split("##")
+                    if (xDep != 'empty'){
+                        def arrayGetterFromSplit = xDep.toString().split("##")
                     // linked Account Maps is used to mapped the data when it is in the web page.
                     def depositInformation = [:]
                     depositInformation.put('id',arrayGetterFromSplit[0])
@@ -703,7 +708,10 @@ class WebPortalManagementController {
                     depositInformation.put('product',arrayGetterFromSplit[3])
                     depositInformation.put('type',arrayGetterFromSplit[4])
                     depositInformation.put('status',arrayGetterFromSplit[5])
-                    depositsHandler[counter] = depositInformation
+                    depositsHandler[counter] = depositInformation                        
+                    }
+                    // listing of deposit accounts
+
                     counter = counter + 1;
                 }
                 //============================= END FETCH DEPOSIT INFORMATION OF CUSTOMER ========================
@@ -957,12 +965,12 @@ class WebPortalManagementController {
         }
         
         
-        sendMail {
-            to emailAdd
-            subject emailSubjectContent
-            html emailMsgContent
-        }
-        println("=========== VERIFIFY ACCOUNT SECTION =============")
+        //sendMail {
+            //to emailAdd
+           // subject emailSubjectContent
+           // html emailMsgContent
+       // }
+        println("=================VERIFY ACCOUNT SECTION=================================")
         println("Email Sent to : "+emailAdd)
         println("Code : "+regCode)
         println("==================================================")

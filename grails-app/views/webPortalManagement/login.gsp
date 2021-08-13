@@ -31,7 +31,7 @@
     
     <g:javascript> 
        
-        var systemDownForMaintenance = '${WebConfig.findByParamCode("GEN.1002").paramValue}';
+        var systemDownForMaintenance = '${WebConfig.findByParamCode("GEN.1002").paramValue}'; 
             if(systemDownForMaintenance.toUpperCase() == "TRUE"){
                console.log("system down");
                window.location.href="${createLink(controller:'WebPortalManagement', action:'rdrLandingPage')}"
@@ -47,13 +47,12 @@
                 
             }; 
             console.log(JSON.stringify(obj));
-            console.log("Object Loaded iwth data...");
+            console.log("Object Loaded iwth data..s.");
             $.ajax({
                 type: "POST",
                 contentType: "application/json",
                 url: "${createLink(controller:'WebPortalManagement', action:'validateLoginCredentials')}",
                 data: JSON.stringify(obj),
-
                 success: function(data){
               
                     obj = JSON.parse(JSON.stringify(data[0]));

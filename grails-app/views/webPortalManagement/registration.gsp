@@ -68,7 +68,7 @@
                     obj = JSON.parse(JSON.stringify(data[0]));
                     var codeVerify = obj.responsetexx.toString();
                     console.log("codeVerify: "+codeVerify);
-                    verificationXCode = codeVerify
+                   <!-- verificationXCode = codeVerify -->
                 },
                 error: function(data){
 
@@ -79,7 +79,9 @@
         }
         function validateCodeThenSubmit(){
             var codeFrmUser = $('#txtverifyCode').val();
+           <!-- var mainCode = verificationXCode  -->
             var mainCode = verificationXCode
+            
             
             if(codeFrmUser === mainCode){
                 console.log("success");
@@ -172,14 +174,14 @@
                     msgAlertSweet(AppTitle,"Sorry, Password and Retype password Mismatch","error");
                     
                 }else{
-                    validateGeneratedCode();
+                   validateGeneratedCode();
                 } 
                
             }*/
              validateGeneratedCode();
             
         }
-        //============= WEB CAPTCHA BY JM MARQUEZ ===========
+        //============= WEB CAPTCHA BY JM MARQUEZ =========== 
         var code;
         function createCaptcha() {
             //clear the contents of captcha div first 
@@ -195,6 +197,8 @@
               else i--;
             }
             var canv = document.createElement("canvas");
+            
+            
             canv.id = "captcha";
             canv.width = 100;
             canv.height = 50;
